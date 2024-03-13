@@ -25,7 +25,8 @@ edges = [(0, 1), (1, 2), (2, 3), (3, 0),
 colors = [(0, 0, 255), (0, 255, 0), (255, 0, 0),
          (0, 255, 255), (255, 0, 255), (255, 255, 0)]
 
-angle_x, angle_y, angle_z = 0, 0, 0 # for rotation matrix
+angle_x = angle_y = angle_z = 0
+ # for rotation matrix
 
 while True:
     rotation_matrix_x = np.array([[1, 0, 0],
