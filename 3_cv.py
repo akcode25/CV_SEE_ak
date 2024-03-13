@@ -50,14 +50,14 @@ while True:
 
     projected_vertices = (rotated_vertices[:, :2] * cube_size + np.array([300, 300])).astype(int)
 
-    frame = np.zeros((500, 500, 3), dtype=np.uint8) #black
+    img = np.zeros((500, 500, 3), dtype=np.uint8) #black
 
     for edge in edges:
         pt1 = tuple(projected_vertices[edge[0]])
         pt2 = tuple(projected_vertices[edge[1]])
-        cv2.line(frame, pt1, pt2, cube_color, cube_thickness)
+        cv2.line(img, pt1, pt2, cube_color, cube_thickness)
 
-    cv2.imshow("Resizable 3D Image", frame)
+    cv2.imshow("Resizable 3D Image", img)
 
     key = cv2.waitKey(30)
     if key == ord('q'): break
