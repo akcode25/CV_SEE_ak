@@ -37,14 +37,14 @@ while True:
     # Project the 3D points to 2D
     projected_vertices = (rotated_vertices[:, :2] * cube_size + np.array([300, 300])).astype(int)
 
-    frame = np.ones((500, 500, 3), dtype=np.uint8) #* background_color
+    img = np.ones((500, 500, 3), dtype=np.uint8) #* background_color
 
     for edge in edges:
         pt1 = tuple(projected_vertices[edge[0]]) # Get starting point coordinates
         pt2 = tuple(projected_vertices[edge[1]]) # Get ending point coordinates
-        cv2.line(frame, pt1, pt2, cube_color, cube_thickness)
+        cv2.line(img, pt1, pt2, cube_color, cube_thickness)
 
-    cv2.imshow("Rotating 2D Square", frame.astype(np.uint8))
+    cv2.imshow("Rotating 2D Square", img.astype(np.uint8))
     key = cv2.waitKey(30)
     if key == ord('q'): break
     angle += 0.03
@@ -89,14 +89,14 @@ cv2.destroyAllWindows()
 
 #     projected_vertices = (rotated_vertices[:, :2] * cube_size + np.array([300, 300])).astype(int)
 
-#     frame = np.ones((500, 500, 3), dtype=np.uint8) #* background_color
+#     img = np.ones((500, 500, 3), dtype=np.uint8) #* background_color
 
 #     for edge in edges:
 #         pt1 = tuple(projected_vertices[edge[0]])
 #         pt2 = tuple(projected_vertices[edge[1]])
-#         cv2.line(frame, pt1, pt2, cube_color, cube_thickness)
+#         cv2.line(img, pt1, pt2, cube_color, cube_thickness)
 
-#     cv2.imshow("Rotating 3D Cube", frame.astype(np.uint8))
+#     cv2.imshow("Rotating 3D Cube", img.astype(np.uint8))
 #     key = cv2.waitKey(30)
 #     if key == ord('q'): break
 #     angle += 0.03
