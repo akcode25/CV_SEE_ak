@@ -1,111 +1,36 @@
 import cv2
-import numpy as np
-import math
 
-# Function to draw a sky blue background
-def draw_sky(img):
-    sky_color = (250, 206, 135)  # Sky Blue color
-    cv2.rectangle(img, (0, 0), (800, 600), sky_color, -1)  #topleft, bottomright, -1(filled) (+:outlinethinkness)
+# Path to your image file
+image_path = "C:/Users/aka-pc/Downloads/hp.jpg"
+image = cv2.imread(image_path) # Load the image
 
-# Function to draw a garden
-def draw_garden(img):
-    grass_color = (0, 128, 0)  # Green color for the grass
-    cv2.rectangle(img, (0, 350), (800, 600), grass_color, -1)
+# Check if the image is loaded successfully
+if image is None:
+    print("Error: Could not load the image.")
+else:
+    # Load the pre-trained Haarcascades face detector
+    # This line creates a cascade classifier object for detecting faces using a pre-trained Haar cascade classifier. The path to the Haar cascade file for face detection is provided.
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')  #classifier object
 
-# Function to draw a moving sun
-def draw_sun(img, angle):
-    sun_color = (0, 255, 255)  # Yellow color for the sun
+    # Convert the image to grayscale for face detection - simplify processing and reduce computational complexity.
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Calculate sun position based on the angle
-    sun_x = int(700 * math.cos(angle) + 100)
-    sun_y = int(100 * math.sin(angle) + 100)
+    # Detect faces in the image
+    faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.3, minNeighbors=5) # returns a list of rectangles representing the detected faces.  #a larger value of scaleFactor speeds up the process but may miss smaller faces # each potential face rectangle should have at least 5 neighboring rectangles to be considered a valid face.
 
-    # Draw the sun   #cordinates #radius
-    cv2.circle(img, (sun_x, sun_y), 40, sun_color, -1)
+    # Check if faces are detected
+    if len(faces) > 0:
+        print("Human face detected!")
+    else:
+        print("No human face detected.")
 
-# Function to draw a black car
-def draw_car(img, x, y):
-    car_color = (0, 0, 0)  # Black color for the car
-    wheel_color = (0, 0, 0)  
+    # Draw green rectangles around the detected faces
+    for (x, y, w, h) in faces:
+        cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 5)
+    # Resize the image for better visibility
 
-    # Draw car body
-    cv2.rectangle(img, (x, y), (x + 60, y + 30), car_color, -1)
-    # Draw car windows
-    cv2.rectangle(img, (x + 10, y + 5), (x + 20, y + 15), (255, 255, 255), -1)
-    cv2.rectangle(img, (x + 30, y + 5), (x + 40, y + 15), (255, 255, 255), -1)
-    cv2.circle(img, (x + 10, y + 30), 5, wheel_color, -1)  # Front wheel
-    cv2.circle(img, (x + 50, y + 30), 5, wheel_color, -1)  # Rear wheel
-
-
-# Function to draw a pink house with windows, a door, and a driveway
-def draw_house(img):
-    house_color = (193, 182, 255)  # Pink color for the house
-    window_color = (255, 255, 255)  # White color for windows
-    door_color = (19, 69, 139)  # Brown color for the door
-
-    # Draw the house structure in one corner
-    cv2.rectangle(img, (50, 150), (230, 370), house_color, -1)
-    # Draw windows
-    cv2.rectangle(img, (90, 190), (130, 230), window_color, -1)
-    cv2.rectangle(img, (90, 270), (130, 310), window_color, -1)
-    cv2.rectangle(img, (170, 190), (210, 230), window_color, -1)
-    cv2.rectangle(img, (170, 270), (210, 310), window_color, -1)
-    # Draw the door
-    cv2.rectangle(img, (130, 330), (170, 370), door_color, -1)
-
-def draw_mountain(img):
-    mountain_color = (0, 63, 123)  # Gray color for the mountain
-
-    # Define the points of the triangular shape
-    points = np.array([[600, 350], [800, 50], [800, 350]])
-
-    # Draw the triangular shape
-    cv2.drawContours(img, [points], 0, mountain_color, -1)
-
-def draw_car2(img, x, y):
-    car_color = (43, 43, 210)  # Red color for the car
-    wheel_color = (0, 0, 0)  
-
-    # Draw car body
-    cv2.rectangle(img, (x, y), (x + 60, y + 30), car_color, -1)
-    # Draw car windows
-    cv2.rectangle(img, (x + 10, y + 5), (x + 20, y + 15), (255, 255, 255), -1)
-    cv2.rectangle(img, (x + 30, y + 5), (x + 40, y + 15), (255, 255, 255), -1)
-    cv2.circle(img, (x + 10, y + 30), 5, wheel_color, -1)  # Front wheel
-    cv2.circle(img, (x + 50, y + 30), 5, wheel_color, -1)  # Rear wheel
-
-
-
-# Initialize OpenCV window
-cv2.namedWindow('Complex 3D Scene', cv2.WINDOW_NORMAL)
-cv2.resizeWindow('Complex 3D Scene', 800, 600) #resizable window named 'Complex 3D Scene' with dimensions 800x600 pixels 
-
-# Initial parameters for the moving sun and car
-sun_angle = 0
-car_x = 200  # Initial x-coordinate for the car
-
-while True:
-    # Create a sky blue background
-    img = np.zeros((600, 800, 3), dtype=np.uint8)  #3 rgb channels #8 bit int 0-255 #pixel intencity
-    draw_sky(img)
-    draw_garden(img) # Draw the garden
-    draw_sun(img, sun_angle) # Draw a moving sun with yellow color
-    draw_house(img) # Draw the house in one corner
-    draw_car(img, car_x, 450)  # Draw a black car
-    draw_mountain(img)  # Draw the half mountain on the right side
-    draw_car2(img, 750 - car_x * 2, 500)
-    
-    # Display the image
-    cv2.imshow('Complex 3D Scene', img)
-    
-    sun_angle += 0.005  # Update the angles of the moving sun
-    car_x += 1 # Update the position of the car
-
-    # Check for keyboard input
-    key = cv2.waitKey(30)
-    if key == 27:  # ESC key to exit
-      break
-
-
-cv2.destroyAllWindows() #closes the OpenCV window and releases resources.
-
+    resized_image = cv2.resize(image, (600, 700))
+    # Display the original image with faces highlighted
+    cv2.imshow('Detected Faces', resized_image)
+    cv2.waitKey(0)  # program will wait indefinitely until a key is pressed
+    cv2.destroyAllWindows()
