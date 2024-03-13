@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 img = cv2.imread('C:/Users/aka-pc/Downloads/pic.jpg', 0)  #0 =>cv2.IMREAD_GRAYSCALE
-kernel = np.ones((5,5), np.uint8)
+kernel = np.ones((5,5), np.uint8) #white
 
 eroded_image = cv2.erode(img,kernel,1) #iterations=1
 dilated_image = cv2.dilate(img,kernel,1)
