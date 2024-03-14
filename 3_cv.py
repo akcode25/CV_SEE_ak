@@ -9,8 +9,6 @@ def on_size_change(value):
     global circle_radius, cube_size
     circle_radius = cube_size = value
 
-img_2d = np.zeros((500, 500, 3), dtype=np.uint8) 
-
 circle_center = (300, 300)
 circle_color = cube_color = (255, 255, 255)
 
