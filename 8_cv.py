@@ -5,6 +5,7 @@ import numpy as np
 import math
 
 cube_size = 100
+cube_color=(255,255,255)
 cube_thickness = 2
 
 vertices = np.array([[-1, -1, -1],
@@ -58,7 +59,7 @@ while True:
     for edge in edges:
         pt1 = tuple(projected_vertices[edge[0]])
         pt2 = tuple(projected_vertices[edge[1]])
-        cv2.line(image, pt1, pt2, (255, 255, 255), cube_thickness)
+        cv2.line(image, pt1, pt2, cube_color, cube_thickness)
 
     cv2.imshow("Rotating 3D Cube", image)
     key = cv2.waitKey(30)
