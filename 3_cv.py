@@ -21,7 +21,7 @@ angle = 0
 
 cv2.namedWindow("Resizable 2D and 3D Images", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("Resizable 2D and 3D Images", 500, 500)
-cv2.createTrackbar("Size", "Resizable 2D and 3D Images", cube_size, 100, on_size_change)
+cv2.createTrackbar("Size", "Resizable 2D and 3D Images", cube_size, 200, on_size_change)
 
 while True:
     #2d
