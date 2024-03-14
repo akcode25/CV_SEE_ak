@@ -292,7 +292,7 @@ while True:
                               (2, 6, 7, 3), (1, 2, 6, 5), (0, 3, 7, 4)]):
 
         pts = projected_vertices[face, :]
-        cv2.fillPoly(image, [pts], color=colors[i])
+        cv2.fillPoly(image, [pts], colors[i])
 
     # Draw cube edges
     for edge in edges:
