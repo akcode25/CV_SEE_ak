@@ -6,8 +6,8 @@ import cv2
 import numpy as np
 import math
 
-cv2.namedWindow("Rotating 2D Square", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Rotating 2D Square", 500, 500)
+# cv2.namedWindow("Rotating 2D Square", cv2.WINDOW_NORMAL)
+# cv2.resizeWindow("Rotating 2D Square", 500, 500)
 
 cube_size = 100
 cube_color = (255, 255, 255)

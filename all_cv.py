@@ -21,9 +21,6 @@ import cv2
 import numpy as np
 import math
 
-cv2.namedWindow("Rotating 3D Cube", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Rotating 3D Cube", 600, 600)
-
 cube_size = 100
 cube_color = (255, 255, 255)
 cube_thickness = 2
@@ -140,9 +137,6 @@ import cv2
 import numpy as np
 import math
 
-cv2.namedWindow("Rotating 2D Square", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Rotating 2D Square", 500, 500)
-
 cube_size = 100
 cube_color = (255, 255, 255)
 cube_thickness = 2
@@ -249,8 +243,6 @@ cv2.destroyAllWindows()
 import cv2
 import numpy as np
 import math
-
-image = np.zeros((500, 500, 3), dtype=np.uint8) #create a black image
 
 cube_size = 100
 cube_thickness = 2

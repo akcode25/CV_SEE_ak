@@ -5,9 +5,6 @@ import cv2
 import numpy as np
 import math
 
-cv2.namedWindow("Rotating 3D Cube", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Rotating 3D Cube", 600, 600)
-
 cube_size = 100
 cube_color = (255, 255, 255)
 cube_thickness = 2

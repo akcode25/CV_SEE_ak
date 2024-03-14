@@ -4,8 +4,6 @@ import cv2
 import numpy as np
 import math
 
-image = np.zeros((500, 500, 3), dtype=np.uint8) #create a black image
-
 cube_size = 100
 cube_thickness = 2
 
