@@ -53,7 +53,7 @@ def draw_mountain(img):
     cv2.drawContours(img, [points], 0, mountain_color, -1) # triangle
 
 def draw_car2(img, x, y):
-    car_color = (43, 43, 210)  # Red 
+    car_color = (43, 43, 210)  # Redish 
     wheel_color = (0, 0, 0)  
 
     cv2.rectangle(img, (x, y), (x + 60, y + 30), car_color, -1)
@@ -65,8 +65,8 @@ def draw_car2(img, x, y):
 
 
 # Initialize OpenCV window
-cv2.namedWindow('Complex 3D Scene', cv2.WINDOW_NORMAL)
-cv2.resizeWindow('Complex 3D Scene', 800, 600) #resizable window named 'Complex 3D Scene' with dimensions 800x600 pixels 
+cv2.namedWindow('My 3D Scene', cv2.WINDOW_NORMAL)
+cv2.resizeWindow('My 3D Scene', 800, 600) #resizable window named 'My 3D Scene' with dimensions 800x600 pixels 
 
 sun_angle = 0
 car_x = 200  # Initial x-coordinate for the car
@@ -82,7 +82,7 @@ while True:
     draw_mountain(img)  
     draw_car2(img, 750 - car_x * 2, 500)
     
-    cv2.imshow('Complex 3D Scene', img)
+    cv2.imshow('My 3D Scene', img)
     
     sun_angle += 0.005 
     car_x += 1 
